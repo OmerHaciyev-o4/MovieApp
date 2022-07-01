@@ -1,0 +1,18 @@
+<div class="list-group">
+  <a
+  [routerLink]="['/movies']"  
+    (click)="selectCategory()"
+    [class.active]="displayAll"
+    class="list-group-item list-group-item-action"
+    >All Categories</a
+  >
+  <div class="row-cols-6 d-inline-block" *ngFor="let item of categories">    
+    <a
+    [routerLink]="['/movies/category',item.id]"
+    (click)="selectCategory(item)"
+    [class.active]="!displayAll && selectedCategory?.id == item.id"
+    class="list-group-item active col-md-11 d-inline-block"
+    >{{ item.name | titlecase }}</a>
+    <i class="fas fa-trash col-md-1 d-inline-block w-auto ms-2 pointer" (click)="deleteCategory(item.id)"></i>
+  </div>
+</div>

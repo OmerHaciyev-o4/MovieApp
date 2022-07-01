@@ -1,0 +1,27 @@
+<div *ngIf="movie else no_movies">
+    <div class="card">
+        <div class="row me-0">
+            <div class="col-md-4">
+                <img src="{{ movie.imageUrl }}" class="img-fluid rounded-start" >
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h1 class="card-title">{{movie.title}}</h1>
+                    <p class="card-text">{{movie.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 mx-auto">
+        <textarea name="commets" id="commets" rows="6" class="w-100 d-block mt-1" readonly style="outline: none;">{{getComments()}}</textarea>
+        <div class="col-md-12 mt-1">
+            <input type="text" name="comment" id="comment" class="w-75 py-1 rounded border-1 me-3 mt-3" [(ngModel)]="comment">
+            <button
+                class="btn btn-success"
+                (click)="sendComment();"
+                [disabled]="!comment">Send</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #no_movies><div class="alert alert-warning">No movie found.</div></ng-template>
